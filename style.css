@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 /* >> RESET */
     *,
     *::after,
@@ -12,6 +18,15 @@
     html    {
         scroll-behavior: smooth;
     }
+
+    span    {
+        color: purple;
+        font-family: "Playwrite NG Modern", cursive;
+        font-optical-sizing: auto;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 30px;
+    }
 /*  */
 
 /* >> HEADER STYLES*/
@@ -19,16 +34,169 @@
         text-align: center;
         height: 80px;
         width: 100%;
-        background-color: aliceblue;
 
         display: grid;
         place-content: center;
+    }
+
+    .header h2  {
+        font-family: "Playwrite NG Modern", cursive;
+        font-optical-sizing: auto;
+        font-weight: bolder;
+        font-style: normal;
+        color: purple;
     }
 /*  */
 
 /* >> CONTAINER STYLES */
     .container  {
-        background-color:beige;
-        height: 100vh;
+        height: 88vh;
         width: 100%;
+    }
+
+    .game-container {
+        height: 100%;
+        padding: 16px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+/* > Hero Section */
+    .hero   {
+        width: 50%;
+    }
+    .hero p  {
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+        text-align: center;
+
+        font-size: 30px;
+    }
+/* > Start Section */
+    .start  {
+        width: 50%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+/* > Players */
+    .players    {
+
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .players h2 {
+        font-family: "Playwrite FR Moderne", cursive;
+        font-optical-sizing: auto;
+        font-weight: Bolder;
+        font-style: normal;
+    }
+
+    #num-players    {
+        text-align: center;
+        height: 60px;
+        width: 60px;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        background-color: rgb(233, 126, 233);
+
+        font-family: "Playwrite FR Moderne", cursive;
+        font-optical-sizing: auto;
+        font-weight: bolder;
+        font-style: normal;
+    }
+
+    #start-btn  {
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-weight: bolder;
+
+        width: 60%;
+        height: 60px;
+        font-size: 22px;
+        color: purple;
+        background-color: transparent;
+        outline: none;
+        border: 2px solid purple;
+        text-align: center;
+    }
+
+/* > Start Button */
+    #start-btn{
+
+    }
+
+
+/* >> RESPONSIVE WEB */
+/* > Mobile */
+    @media (max-width: 550px){
+        /* >> GENERAL STYLES */
+            span    {
+                font-size: 15px;
+            }
+        /*  */
+
+
+        /* >> CONTAINER STYLES */
+            .game-container {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+            }
+        /* > Hero Section */
+            .hero   {
+                width: 100%;
+            }
+            .hero p   {
+                text-align: center;
+                font-size: 15px;
+                letter-spacing: 1px;
+                padding: 16px;
+            }
+        /* > Start Section */
+            .start  {
+                width: 100%;
+            }
+        /* > Players */
+            .players    {
+
+            }
+
+            .players h2 {
+
+            }
+
+            #num-players    {
+                height: 60px;
+                width: 60px;
+                border: none;
+                border-radius: 50%;
+                outline: none;
+                background-color: rgb(233, 126, 233);
+            }
+        /* > Start Button */
+            #start-btn  {
+                width: 60%;
+                height: 60px;
+                font-size: 22px;
+            }
+
+            #start-btn:active{
+                background-color: purple;
+                color: white;
+                border: none;
+                transition: 200ms;
+            }
     }
