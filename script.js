@@ -28,7 +28,7 @@ startBTN.addEventListener('click', (e)=>{
     
     else{
         gameContainerElement.innerHTML = '';    // Clear the initial HTML content
-        appendDisplay();
+        chooseRandom(appendDisplay());
     };
 
 
@@ -36,24 +36,76 @@ startBTN.addEventListener('click', (e)=>{
 
 // Appends button to display
 function appendDisplay(){
+/*     const button = document.createElement("button");
+
+    button.id = 'player-buttons';
+    button.style.width = '55px';
+    button.style.height = '55px';
+    button.style.borderRadius = '50%';
+    button.style.border = 'none';
+    button.style.textAlign = 'center';
+    button.style.fontWeight = '100'
+    button.style.fontSize = '22px'
+    button.textContent = '+';
+
+    gameContainerElement.appendChild(button) */
+    let player = 1
+    let docFrag = document.createDocumentFragment();
     while(numPlayers.value > 0){
         let button = document.createElement("button");
-        button.id = 'player-buttons';
+
+        button.id = `player${player}-button`;
         button.style.width = '55px';
         button.style.height = '55px';
         button.style.borderRadius = '50%';
         button.style.border = 'none';
         button.style.textAlign = 'center';
-        button.style.fontWeight = '100'
-        button.style.fontSize = '22px'
+        button.style.fontWeight = '100';
+        button.style.fontSize = '22px';
         button.textContent = '+';
 
+        docFrag.appendChild(button);
 
 
-        gameContainerElement.appendChild(button)
+        gameContainerElement.appendChild(docFrag);
+        player++;
+        numPlayers.value--;
+    };
+
+    let nodeList = document.querySelectorAll('button')
+    return nodeList
+};
 
 
-        numPlayers.value -= 1
-        console.log(numPlayers.value)
-    }
-}
+let choosePlayer = 1
+function chooseRandom(btn){
+    console.log(btn)
+    let nodeLength = btn.length;
+    //console.log(nodeLength)
+    let eventNum = 0;
+
+    let colors = ['lightgreen', 'pink', 'purple', 'red', 'blue', 'yellow'];
+
+
+
+    while(nodeLength > 0){
+        //console.log(btn[eventNum]);
+        for(i in btn){
+            console.log(i)
+            i.addEventListener('click', (e)=>{
+                console.log('going somewehre')
+            })
+        }
+
+
+/*         let selectPlayer = `player${choosePlayer}-button`
+        btn[eventNum].addEventListener("click", (e)=>{
+            console.log("might work");
+            
+            document.getElementById(selectPlayer).style.background = colors[eventNum];
+        }); */
+        eventNum++;
+        choosePlayer++;
+        nodeLength--;
+    };
+};
