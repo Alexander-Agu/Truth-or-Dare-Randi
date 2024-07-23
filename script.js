@@ -1,111 +1,174 @@
 // When the player select the number of players and click start randi
-// A pop up will apear, giving instuctions
 // The container must be cleared
 // Depending on the number of players
 // buttons must be appended to the container display
 // each button will be emty
-// each button will be given a unique colore when clicked
-// A random function will select one of the colored buttons and fill the screen with the selected color button
-// It will also display the challenge
-// and finaly a button to reset the whole game
-
+// each button will be given a random unique colore when clicked
+// Bellow the appended will be the Truth or Dare randindi button that will select a random player and give them a choice of truth or dare randomly
+// They should be able to keep using the TODR button as many times as they want
+// if they need to chnage the number of players a button to reset the whole game will be available
 
 
 // CONSTANT VARIABLES
-const containerElement = document.querySelector('.container');
-const gameContainerElement = document.querySelector('.game-container');
+const container = document.querySelector('.container');
+const gameContainer = document.querySelector('.game-container');
 const numPlayers = document.getElementById('num-players');
 const startBTN = document.getElementById('start-btn');
 
+// Contains colors that will be used to help the players select thier space
+let colors = ['yellow', 'purple', 'yellowGreen', 'pink', 'lightBlue', 'lightBrown'];
 
-startBTN.addEventListener('click', (e)=>{
-    // Checks if the user inserted a value a value greater than 1
-    if(numPlayers.value === "" || numPlayers.value <= 1)
-        alert("You can only choose 2 to 6 players");
-    
-    else if(numPlayers.value > 6)
-        alert("You can only choose 2 to 6 players");
-    
-    else{
-        gameContainerElement.innerHTML = '';    // Clear the initial HTML content
-        chooseRandom(appendDisplay());
+// Starts the game
+startBTN.onclick = ()=>{
+    if(numPlayers.value <= 6 && numPlayers.value >= 2){
+        gameContainer.innerHTML = '';
+        appendButton(numPlayers.value);
+    } else{
+        alert('You can only choose 2 to 6 players')
     };
+};
 
-
-});
-
-// Appends button to display
-function appendDisplay(){
-/*     const button = document.createElement("button");
-
-    button.id = 'player-buttons';
-    button.style.width = '55px';
-    button.style.height = '55px';
-    button.style.borderRadius = '50%';
-    button.style.border = 'none';
-    button.style.textAlign = 'center';
-    button.style.fontWeight = '100'
-    button.style.fontSize = '22px'
-    button.textContent = '+';
-
-    gameContainerElement.appendChild(button) */
-    let player = 1
-    let docFrag = document.createDocumentFragment();
-    while(numPlayers.value > 0){
-        let button = document.createElement("button");
-
-        button.id = `player${player}-button`;
-        button.style.width = '55px';
-        button.style.height = '55px';
-        button.style.borderRadius = '50%';
-        button.style.border = 'none';
-        button.style.textAlign = 'center';
-        button.style.fontWeight = '100';
-        button.style.fontSize = '22px';
+// Appends multiple buttons depending on how many players where chosen
+function appendButton(nth){
+    let buttonID = []
+    for(let i = 0; i < nth; i++){
+        let button = document.createElement('button');
+        button.id = `button${i}`;
         button.textContent = '+';
-
-        docFrag.appendChild(button);
-
-
-        gameContainerElement.appendChild(docFrag);
-        player++;
-        numPlayers.value--;
+        buttonID.push(button.id);
+        gameContainer.append(button);
     };
 
-    let nodeList = document.querySelectorAll('button')
-    return nodeList
+    // Gives functionality to the buttons
+    handleButton(buttonID);
 };
 
 
-let choosePlayer = 1
-function chooseRandom(btn){
-    console.log(btn)
-    let nodeLength = btn.length;
-    //console.log(nodeLength)
-    let eventNum = 0;
 
-    let colors = ['lightgreen', 'pink', 'purple', 'red', 'blue', 'yellow'];
+// Handles all 6 buttons
+// After player select their boxes the buttons must not work anymore
+function handleButton(buttons){
+    let buttonsLength = buttons.length;
 
+    // Handles 2 buttons
+    if(buttonsLength === 2){
+        // Handles the first button
+        document.getElementById(buttons[0]).onclick = ()=>{
+            console.log('1')
+        };
 
+        // Handles the second button
+        document.getElementById(buttons[1]).onclick = ()=>{
+            console.log(2)
+        };
+    }
 
-    while(nodeLength > 0){
-        //console.log(btn[eventNum]);
-        for(i in btn){
-            console.log(i)
-            i.addEventListener('click', (e)=>{
-                console.log('going somewehre')
-            })
-        }
+    // Handles 3 buttons
+    else if(buttonsLength === 3){
+        // Handles the first button
+        document.getElementById(buttons[0]).onclick = ()=>{
+            console.log(1)
+        };
 
+        // Handles the second button
+        document.getElementById(buttons[1]).onclick = ()=>{
+            console.log(2)
+        };
 
-/*         let selectPlayer = `player${choosePlayer}-button`
-        btn[eventNum].addEventListener("click", (e)=>{
-            console.log("might work");
-            
-            document.getElementById(selectPlayer).style.background = colors[eventNum];
-        }); */
-        eventNum++;
-        choosePlayer++;
-        nodeLength--;
-    };
+        // Handles the third button
+        document.getElementById(buttons[2]).onclick = ()=>{
+            console.log(3)
+        };
+    }
+
+    // Handles 4 buttons
+    else if(buttonsLength === 4){
+        // Handles the first button
+        document.getElementById(buttons[0]).onclick = ()=>{
+            console.log(1)
+        };
+
+        // Handles the second button
+        document.getElementById(buttons[1]).onclick = ()=>{
+            console.log(2)
+        };
+
+        // Handles the third button
+        document.getElementById(buttons[2]).onclick = ()=>{
+            console.log(3)
+        };
+
+        // Handles the fourth button
+        document.getElementById(buttons[3]).onclick = ()=>{
+            console.log(4)
+        };
+    }
+
+    // Handles 5 buttons
+    else if(buttonsLength === 5){
+            // Handles the first button
+            document.getElementById(buttons[0]).onclick = ()=>{
+                console.log(1)
+            };
+
+            // Handles the second button
+            document.getElementById(buttons[1]).onclick = ()=>{
+                console.log(2)
+            };
+
+            // Handles the third button
+            document.getElementById(buttons[2]).onclick = ()=>{
+                console.log(3)
+            };
+
+            // Handles the fourth button
+            document.getElementById(buttons[3]).onclick = ()=>{
+                console.log(4)
+            };
+
+            // Handles the fith button
+            document.getElementById(buttons[4]).onclick = ()=>{
+                console.log(5)
+            };
+    }
+
+    // Handles 6 buttons
+    else if(buttonsLength === 6){
+        // Handles the first button
+        document.getElementById(buttons[0]).onclick = ()=>{
+            console.log(1)
+        };
+
+        // Handles the second button
+        document.getElementById(buttons[1]).onclick = ()=>{
+            console.log(2)
+        };
+
+        // Handles the third button
+        document.getElementById(buttons[2]).onclick = ()=>{
+            console.log(3)
+        };
+
+        // Handles the fourth button
+        document.getElementById(buttons[3]).onclick = ()=>{
+            console.log(4)
+        };
+
+        // Handles the fith button
+        document.getElementById(buttons[4]).onclick = ()=>{
+            console.log(5)
+        };
+        // Handles the sixth button
+        document.getElementById(buttons[5]).onclick = ()=>{
+            console.log(6)
+        };
+    }
+
 };
+
+// Function to select a random color
+// When a random color has been randomly selected from the array it should be removed from the array to avoid selecting it again
+// Might need to use the map method to locate the randomly selected color and remove it
+function selectRandomColor(){
+
+}
