@@ -15,8 +15,6 @@ const gameContainer = document.querySelector('.game-container');
 const numPlayers = document.getElementById('num-players');
 const startBTN = document.getElementById('start-btn');
 
-// Contains colors that will be used to help the players select thier space
-let colors = ['yellow', 'purple', 'yellowGreen', 'pink', 'lightBlue', 'lightBrown'];
 
 // Starts the game
 startBTN.onclick = ()=>{
@@ -43,6 +41,8 @@ function appendButton(nth){
     handleButton(buttonID);
 };
 
+// Contains colors that will be used to help the players select thier space
+let colors = ['yellow', 'purple', 'orange', 'pink', 'red', 'peru'];
 
 
 // Handles all 6 buttons
@@ -54,12 +54,12 @@ function handleButton(buttons){
     if(buttonsLength === 2){
         // Handles the first button
         document.getElementById(buttons[0]).onclick = ()=>{
-            console.log('1')
+            assignColors(buttons[0])
         };
 
         // Handles the second button
         document.getElementById(buttons[1]).onclick = ()=>{
-            console.log(2)
+            assignColors(buttons[1]);
         };
     }
 
@@ -67,17 +67,17 @@ function handleButton(buttons){
     else if(buttonsLength === 3){
         // Handles the first button
         document.getElementById(buttons[0]).onclick = ()=>{
-            console.log(1)
+            assignColors(buttons[0]);
         };
 
         // Handles the second button
         document.getElementById(buttons[1]).onclick = ()=>{
-            console.log(2)
+            assignColors(buttons[1]);
         };
 
         // Handles the third button
         document.getElementById(buttons[2]).onclick = ()=>{
-            console.log(3)
+            assignColors(buttons[2]);
         };
     }
 
@@ -85,22 +85,22 @@ function handleButton(buttons){
     else if(buttonsLength === 4){
         // Handles the first button
         document.getElementById(buttons[0]).onclick = ()=>{
-            console.log(1)
+            assignColors(buttons[0]);
         };
 
         // Handles the second button
         document.getElementById(buttons[1]).onclick = ()=>{
-            console.log(2)
+            assignColors(buttons[1]);
         };
 
         // Handles the third button
         document.getElementById(buttons[2]).onclick = ()=>{
-            console.log(3)
+            assignColors(buttons[2]);
         };
 
         // Handles the fourth button
         document.getElementById(buttons[3]).onclick = ()=>{
-            console.log(4)
+            assignColors(buttons[3]);
         };
     }
 
@@ -108,27 +108,27 @@ function handleButton(buttons){
     else if(buttonsLength === 5){
             // Handles the first button
             document.getElementById(buttons[0]).onclick = ()=>{
-                console.log(1)
+                assignColors(buttons[0]);
             };
 
             // Handles the second button
             document.getElementById(buttons[1]).onclick = ()=>{
-                console.log(2)
+                assignColors(buttons[1]);
             };
 
             // Handles the third button
             document.getElementById(buttons[2]).onclick = ()=>{
-                console.log(3)
+                assignColors(buttons[2]);
             };
 
             // Handles the fourth button
             document.getElementById(buttons[3]).onclick = ()=>{
-                console.log(4)
+                assignColors(buttons[3]);
             };
 
             // Handles the fith button
             document.getElementById(buttons[4]).onclick = ()=>{
-                console.log(5)
+                assignColors(buttons[4]);
             };
     }
 
@@ -136,39 +136,72 @@ function handleButton(buttons){
     else if(buttonsLength === 6){
         // Handles the first button
         document.getElementById(buttons[0]).onclick = ()=>{
-            console.log(1)
+
+            assignColors(buttons[0]);
         };
 
         // Handles the second button
         document.getElementById(buttons[1]).onclick = ()=>{
-            console.log(2)
+            assignColors(buttons[1]);
         };
 
         // Handles the third button
         document.getElementById(buttons[2]).onclick = ()=>{
-            console.log(3)
+            assignColors(buttons[2]);
         };
 
         // Handles the fourth button
         document.getElementById(buttons[3]).onclick = ()=>{
-            console.log(4)
+            assignColors(buttons[3]);
         };
 
         // Handles the fith button
         document.getElementById(buttons[4]).onclick = ()=>{
-            console.log(5)
+            assignColors(buttons[4]);
         };
         // Handles the sixth button
         document.getElementById(buttons[5]).onclick = ()=>{
-            console.log(6)
+            assignColors(buttons[5]);
         };
     }
 
+    function assignColors(assignBTN){
+        // Gives the button a random background color
+        let displayColor = selectRandomColor(colors);
+        document.getElementById(assignBTN).style.backgroundColor = displayColor;
+        
+
+        // Stops the button from working
+        document.getElementById(assignBTN).onclick = null;
+    };
+
 };
+
+
+
+
 
 // Function to select a random color
 // When a random color has been randomly selected from the array it should be removed from the array to avoid selecting it again
-// Might need to use the map method to locate the randomly selected color and remove it
-function selectRandomColor(){
+// Might need to use the filter method to locate the randomly selected color and remove it
+function selectRandomColor(colorList){
+    let colorsLenth = colorList.length;
+    // Chooses a random color on the COLORS array
+    let randomNumber = Math.floor(Math.random() * colorsLenth) + 0;
+    console.log(randomNumber)
+    let chosenColor = colors[randomNumber];
+    console.log(chosenColor)
 
-}
+    filterArray(chosenColor, colorList);
+
+    return chosenColor;
+};
+
+function filterArray(chosenColor, popColor){
+    // Filters out the selected color out of the array
+    let filterColors = popColor.filter(a => a !== chosenColor);
+
+    // Set the new filtered array to the originanl array
+    colors = filterColors;
+    console.log(colors)
+};
