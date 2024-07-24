@@ -48,9 +48,28 @@
     }
 /*  */
 
+/* >> INSTRUCTION STYLES */
+    .instructions{
+        padding: 16px;
+    }
+
+    .instructions h2{
+        color: purple;
+        font-family: "Playwrite NG Modern", cursive;
+        font-optical-sizing: auto;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 20px;
+    }
+
+    .instructions ol{
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
 /* >> CONTAINER STYLES */
     .container  {
-        height: 100vh;
         width: 100%;
 
         display: flex;
@@ -154,6 +173,7 @@
     }
 
     .play-randi{
+        height: 200px;
         width: 100%;
 
         display: flex;

@@ -185,11 +185,44 @@ function handleButton(buttons, playBTN){
         document.getElementById(assignBTN).onclick = null;
     };
 
-
+    // Gets the random Truth and Dare and displays it on a pop up
     document.getElementById(playBTN[0]).onclick = ()=>{
-        chooseRandomPlayer(buttons)
-    }
+        let player1 = document.getElementById(buttons[0]);
+        let player2 = document.getElementById(buttons[1]);
+        let player3 = document.getElementById(buttons[2]);
+        let player4 = document.getElementById(buttons[3]);
+        let player5 = document.getElementById(buttons[4]);
+        let player6 = document.getElementById(buttons[5]);
 
+        if(buttonsLength === 2 && player1.style.backgroundColor !== '' && player2.style.backgroundColor !== ''){
+            chooseRandomPlayer(buttons);
+        }
+
+        else if(buttonsLength === 3 && player1.style.backgroundColor !== '' && player2.style.backgroundColor !== '' && player3.style.backgroundColor !== ''){
+            chooseRandomPlayer(buttons);
+        }
+
+        else if(buttonsLength === 4 && player1.style.backgroundColor !== '' && player2.style.backgroundColor !== '' && player3.style.backgroundColor !== '' && player4.style.backgroundColor !== ''){
+            chooseRandomPlayer(buttons);
+        }
+
+        else if(buttonsLength === 5 && player1.style.backgroundColor !== '' && player2.style.backgroundColor !== '' && player3.style.backgroundColor !== '' && player4.style.backgroundColor !== '' && player5.style.backgroundColor !== ''){
+            chooseRandomPlayer(buttons);
+        }
+
+        else if(buttonsLength === 6 && player1.style.backgroundColor !== '' && player2.style.backgroundColor !== '' && player3.style.backgroundColor !== '' && player4.style.backgroundColor !== '' && player5.style.backgroundColor !== '' && player6.style.backgroundColor !== ''){
+            chooseRandomPlayer(buttons);
+        }
+
+        else{
+            alert('All players must choose their boxes')
+        }
+    };
+
+    // Resets the game
+    document.getElementById(playBTN[1]).onclick = ()=>{
+        window.location.reload();
+    };
 };
 
 
@@ -251,10 +284,7 @@ function chooseRandomPlayer(players){
     let playerLenth = player.length;
     let randomNumber = Math.floor(Math.random() * playerLenth) + 0; // gets a random number
 
-
-
     let choosePlayer = player[randomNumber] // chooses a random player within the list
-
 
     displayTOD(choosePlayer);
 };
@@ -282,20 +312,20 @@ function displayTOD(chosen){
     popup.style.backgroundColor = chosen;
     popup.classList.add('open-popup')
     
-    let randomTruthDare = Math.floor(Math.random() * 2) + 0;
-    let randomChosen = Math.floor(Math.random() * 3) + 1;
-    if(randomTruthDare === 0){
+    let randomTruthDare = Math.floor(Math.random() * 2) + 0;    // Chooses between the dare and truth object inside of an array
+    let randomChosen = Math.floor(Math.random() * 3) + 1;   // chooses a random value inside one of the objects properties
+
+    if(randomTruthDare === 0){  // gets the DARE properties
         chosenPlayer.textContent = `${chosen} has been given a Dare`;
         truthOrDare.textContent = Truth_Dare[0][`dare${randomChosen}`];
     }
-    else{
+    else{   // Gets the TRUTH properties
         chosenPlayer.textContent = `${chosen} has been given TRUTH`
         truthOrDare.textContent = Truth_Dare[1][`truth${randomChosen}`];
     }
 
-
+    // Closes the pop up
     document.getElementById('closePopup').onclick = ()=>{
         popup.classList.remove('open-popup')
     }
-
 }
