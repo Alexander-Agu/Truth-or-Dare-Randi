@@ -188,6 +188,7 @@ function handleButton(buttons, playBTN){
 
     document.getElementById(playBTN[0]).onclick = ()=>{
         chooseRandomPlayer(buttons)
+        displayTOD()
     }
 
 };
@@ -257,6 +258,13 @@ function chooseRandomPlayer(players){
 };
 
 // Displays the Truth or Dare for the randomly selected player
+let popup  = document.getElementById('popup');
 function displayTOD(chosen){
+    popup.classList.add('open-popup')
+
+
+    document.getElementById('closePopup').onclick = ()=>{
+        popup.classList.remove('open-popup')
+    }
 
 }
