@@ -188,7 +188,6 @@ function handleButton(buttons, playBTN){
 
     document.getElementById(playBTN[0]).onclick = ()=>{
         chooseRandomPlayer(buttons)
-        displayTOD()
     }
 
 };
@@ -255,12 +254,44 @@ function chooseRandomPlayer(players){
 
 
     let choosePlayer = player[randomNumber] // chooses a random player within the list
+
+
+    displayTOD(choosePlayer);
 };
 
+
+const Truth_Dare = [
+    {
+        'dare1': 'Call your mom',
+        'dare2': 'Tell your father you loave him',
+        'dare3': 'Ask God for forgiveness'
+    },
+    {
+        'truth1': 'Do your Parents know you are gay',
+        'truth2': 'Do you still love your ex',
+        'truth3': 'Is God the one that saved your life'
+    }
+]
+
 // Displays the Truth or Dare for the randomly selected player
-let popup  = document.getElementById('popup');
+// It should redomly choose truth of dare
+const popup  = document.getElementById('popup');
+const chosenPlayer = document.getElementById('given');
+const truthOrDare = document.getElementById("dare");
 function displayTOD(chosen){
+    popup.style.backgroundColor = chosen;
     popup.classList.add('open-popup')
+    
+    let randomTruthDare = Math.floor(Math.random() * 2) + 0;
+    let randomChosen = Math.floor(Math.random() * 3) + 1;
+    if(randomTruthDare === 0){
+        chosenPlayer.textContent = `${chosen} has been given a Dare`;
+        truthOrDare.textContent = Truth_Dare[0][`dare${randomChosen}`];
+    }
+    else{
+        chosenPlayer.textContent = `${chosen} has been given TRUTH`
+        truthOrDare.textContent = Truth_Dare[1][`truth${randomChosen}`];
+    }
 
 
     document.getElementById('closePopup').onclick = ()=>{
