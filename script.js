@@ -14,6 +14,7 @@ const container = document.querySelector('.container');
 const gameContainer = document.querySelector('.game-container');
 const numPlayers = document.getElementById('num-players');
 const startBTN = document.getElementById('start-btn');
+const PLAY_CONTAINER = document.querySelector('.play-randi');
 
 
 // Starts the game
@@ -27,8 +28,8 @@ startBTN.onclick = ()=>{
 };
 
 // Appends multiple buttons depending on how many players where chosen
-function appendButton(nth){
-    let buttonID = []
+function appendButton(nth){    let buttonID = []
+    // Appends buttons that players will choose
     for(let i = 0; i < nth; i++){
         let button = document.createElement('button');
         button.id = `button${i}`;
@@ -37,8 +38,18 @@ function appendButton(nth){
         gameContainer.append(button);
     };
 
+    // Appends buttons for reset and play truth or dare
+    let buttonNames = ['Truth or Dare', 'reset']
+    for(let i = 0; i < 2; i++){
+        let button = document.createElement('button');
+        button.id = buttonNames[i];
+        button.textContent = buttonNames[i]
+
+        PLAY_CONTAINER.append(button)
+    }
+
     // Gives functionality to the buttons
-    handleButton(buttonID);
+    handleButton(buttonID, buttonNames);
 };
 
 // Contains colors that will be used to help the players select thier space
@@ -47,7 +58,7 @@ let colors = ['yellow', 'purple', 'orange', 'pink', 'red', 'peru'];
 
 // Handles all 6 buttons
 // After player select their boxes the buttons must not work anymore
-function handleButton(buttons){
+function handleButton(buttons, playBTN){
     let buttonsLength = buttons.length;
 
     // Handles 2 buttons
@@ -169,16 +180,17 @@ function handleButton(buttons){
         // Gives the button a random background color
         let displayColor = selectRandomColor(colors);
         document.getElementById(assignBTN).style.backgroundColor = displayColor;
-        
 
         // Stops the button from working
         document.getElementById(assignBTN).onclick = null;
     };
 
+
+    document.getElementById(playBTN[0]).onclick = ()=>{
+        chooseRandomPlayer(buttons)
+    }
+
 };
-
-
-
 
 
 // Function to select a random color
@@ -188,9 +200,7 @@ function selectRandomColor(colorList){
     let colorsLenth = colorList.length;
     // Chooses a random color on the COLORS array
     let randomNumber = Math.floor(Math.random() * colorsLenth) + 0;
-    console.log(randomNumber)
     let chosenColor = colors[randomNumber];
-    console.log(chosenColor)
 
     filterArray(chosenColor, colorList);
 
@@ -203,5 +213,47 @@ function filterArray(chosenColor, popColor){
 
     // Set the new filtered array to the originanl array
     colors = filterColors;
-    console.log(colors)
+};
+
+
+// A function that gets the background color of the play buttons
+function getPlayerColors(player){
+    let playerLenth = player.length;
+    let player1 = document.getElementById(player[0]);
+    let player2 = document.getElementById(player[1]);
+    let player3 = document.getElementById(player[2]);
+    let player4 = document.getElementById(player[3]);
+    let player5 = document.getElementById(player[4]);
+    let player6 = document.getElementById(player[5]);
+
+    let players = []
+    // gets colors and put inside of an array depending on how many players are playing the game
+    if(playerLenth === 2){
+        return players = [player1.style.backgroundColor, player2.style.backgroundColor]
+    }
+    else if(playerLenth === 3){
+        return players = [player1.style.backgroundColor, player2.style.backgroundColor, player3.style.backgroundColor];
+    }
+    else if(playerLenth === 4){
+        return players = [player1.style.backgroundColor, player2.style.backgroundColor, player3.style.backgroundColor, player4.style.backgroundColor];
+    }
+    else if(playerLenth === 5){
+        return players = [player1.style.backgroundColor, player2.style.backgroundColor, player3.style.backgroundColor, player4.style.backgroundColor, player5.style.backgroundColor];
+    }
+    else if(playerLenth === 6){
+        return players = [player1.style.backgroundColor, player2.style.backgroundColor, player3.style.backgroundColor, player4.style.backgroundColor, player5.style.backgroundColor, player6.style.backgroundColor];
+    }
+};
+
+// A button that will choose random players based on the background color of their button
+function chooseRandomPlayer(players){
+    let player = getPlayerColors(players);
+    let playerLenth = player.length;
+    let randomNumber = Math.floor(Math.random() * playerLenth) + 0; // gets a random number
+
+
+
+    let choosePlayer = player[randomNumber] // chooses a random player within the list
+    console.log(choosePlayer)
+
 };
