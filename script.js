@@ -247,13 +247,16 @@ function getPlayerColors(player){
 
 // A button that will choose random players based on the background color of their button
 function chooseRandomPlayer(players){
-    let player = getPlayerColors(players);
+    let player = getPlayerColors(players); // The 6 buttons ID's names are passed as arguments
     let playerLenth = player.length;
     let randomNumber = Math.floor(Math.random() * playerLenth) + 0; // gets a random number
 
 
 
     let choosePlayer = player[randomNumber] // chooses a random player within the list
-    console.log(choosePlayer)
-
 };
+
+// Displays the Truth or Dare for the randomly selected player
+function displayTOD(chosen){
+
+}
