@@ -290,19 +290,6 @@ function chooseRandomPlayer(players){
 };
 
 
-const Truth_Dare = [
-    {
-        'dare1': 'Call your mom',
-        'dare2': 'Tell your father you loave him',
-        'dare3': 'Ask God for forgiveness'
-    },
-    {
-        'truth1': 'Do your Parents know you are gay',
-        'truth2': 'Do you still love your ex',
-        'truth3': 'Is God the one that saved your life'
-    }
-]
-
 // Displays the Truth or Dare for the randomly selected player
 // It should redomly choose truth of dare
 const popup  = document.getElementById('popup');
@@ -311,21 +298,40 @@ const truthOrDare = document.getElementById("dare");
 function displayTOD(chosen){
     popup.style.backgroundColor = chosen;
     popup.classList.add('open-popup')
-    
-    let randomTruthDare = Math.floor(Math.random() * 2) + 0;    // Chooses between the dare and truth object inside of an array
-    let randomChosen = Math.floor(Math.random() * 3) + 1;   // chooses a random value inside one of the objects properties
 
-    if(randomTruthDare === 0){  // gets the DARE properties
-        chosenPlayer.textContent = `${chosen} has been given a Dare`;
-        truthOrDare.textContent = Truth_Dare[0][`dare${randomChosen}`];
-    }
-    else{   // Gets the TRUTH properties
-        chosenPlayer.textContent = `${chosen} has been given TRUTH`
-        truthOrDare.textContent = Truth_Dare[1][`truth${randomChosen}`];
-    }
-
-    // Closes the pop up
-    document.getElementById('closePopup').onclick = ()=>{
-        popup.classList.remove('open-popup')
-    }
+    loadTruthOrDare(chosen);
 }
+
+// Fetch data from a truth or dare API
+const loadTruthOrDare = async (player) => {
+    try{
+        // Fetches the truth Data
+        const fetchTruth = await fetch('https://api.truthordarebot.xyz/v1/truth', {});
+        const truthData = await fetchTruth.json();
+
+        // Fetches the dare Data
+        const fetchDare = await fetch('https://api.truthordarebot.xyz/api/dare', {});
+        const dareData = await fetchDare.json();
+
+        
+        let randomTruthDare = Math.floor(Math.random() * 2) + 0;    // Chooses between the dare and truth object inside of an array
+
+        if(randomTruthDare === 0){  // gets the DARE properties
+            chosenPlayer.textContent = `${player} has been given a Dare`;
+            truthOrDare.textContent = dareData.question;
+        }
+        else{   // Gets the TRUTH properties
+            chosenPlayer.textContent = `${player} has been given TRUTH`
+            truthOrDare.textContent = truthData.question;
+        }
+    
+        // Closes the pop up
+        document.getElementById('closePopup').onclick = ()=>{
+            popup.classList.remove('open-popup')
+        }
+    }
+    catch(error){
+        console.log(error)
+    }
+
+};
